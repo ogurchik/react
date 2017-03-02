@@ -10,7 +10,25 @@
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
     <script>
-	    var rootElement = React.createElement('div', {}, "hoho crazy bitchs")
+        var contacts =[
+{ key: 1, name:"James K Nelson", email: "james@jamesnelson.com", description: "front-end Unicorn" },
+{key: 2, name: "jim", email: "jim@example.com"},
+{key: 3, name: "joe"}
+        ]
+        var listElements = contacts
+.filter(function(contact) {return contact.email;})
+.map(function(contact){
+    return React.createElement('li', {key: contact.key},
+        React.createElement('h2',{}, contact.name),
+        React.createElement('a', {href: 'mailto:' + contact.email}, contact.email)
+        )
+})
+var ContactForm = React.createClass(
+        propTypes: {
+            contact: React.PropTypes.object.isRequired
+        }
+        )
+var rootElement = React.createElement('div', {}, React.createElement('h1', {}, "Contats"), React.createElement('ul', {}, listElements))
 	    ReactDOM.render(rootElement, document.getElementById('react-app'))
     </script>
   </body>
